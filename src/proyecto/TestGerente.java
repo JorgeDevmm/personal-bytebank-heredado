@@ -20,7 +20,7 @@ public class TestGerente {
                 + "\nsalario : " + gerente.getSalario()
                 + "\nla bonificación : " + gerente.getBonificacion()
                 + "\ntotal de pago : " + (gerente.getSalario() + gerente.getBonificacion())
-                + "\ninicia sesion : " + gerente.iniciarSesion(gerente.getClave()));
+                + "\ninicia sesion : " + gerente.iniciarSesion("admin789"));//validar
 
 
     }

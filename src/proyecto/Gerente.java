@@ -6,6 +6,7 @@ public class Gerente extends Funcionario implements Autenticable {
         return 2000;//podemos invocar al método bonificación de la clase padre
     }
 
+
     @Override
     public void setClave(String clave) {
 
