@@ -1,6 +1,6 @@
 package proyecto;
 
-public class CuentaCorriente extends Cuenta{
+public class CuentaCorriente extends Cuenta implements Tributacion{
 
     public CuentaCorriente(int agencia,int numero){
 
@@ -9,7 +9,7 @@ public class CuentaCorriente extends Cuenta{
 
     @Override
     public void depositar(double saldo) {
-
+        super.saldo += saldo;
     }
 
     @Override
@@ -18,4 +18,9 @@ public class CuentaCorriente extends Cuenta{
         return super.retirar(valorRetiro + comision);
     }
 
+    //Implemento de métodos de interface tributación
+    @Override
+    public double getvalorImpuesto() {
+        return super.saldo * 0.20;//obtengo el valor impuesto desde la multiplicación de saldo
+    }
 }
