@@ -1,10 +1,10 @@
 package proyecto;
 
-public class CuentaCorriente extends Cuenta implements Tributacion{
+public class CuentaCorriente extends Cuenta implements Tributacion {
 
-    public CuentaCorriente(int agencia,int numero){
+    public CuentaCorriente(int agencia, int numero) {
 
-        super(agencia,numero);
+        super(agencia, numero);
     }
 
     @Override
@@ -13,9 +13,9 @@ public class CuentaCorriente extends Cuenta implements Tributacion{
     }
 
     @Override
-    public boolean retirar(double valorRetiro) {
+    public void retirar(double valorRetiro) throws SaldoInsuficienteException {
         double comision = 0.2;
-        return super.retirar(valorRetiro + comision);
+        super.retirar(valorRetiro + comision);
     }
 
     //Implemento de métodos de interface tributación

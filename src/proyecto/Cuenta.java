@@ -17,34 +17,38 @@ public abstract class Cuenta {
 //	
 //	constructor	al ser manipulados por parametros
     public Cuenta(int agencia, int numero) {
-        this.numero = numero;
-        if (agencia <= 0) {
-            System.out.println("No se permite 0");
-            this.agencia = 1;
-        } else {
-            this.agencia = agencia;
-        }
         total++;
         System.out.println("Esta es la cuenta N° : " + total);
+        if (agencia <= 0 && numero <= 0) {
+            System.out.println("No se permite 0 en agencia y numero");
+            this.agencia = 1;//por default
+            this.numero = 1;
+        } else {
+            this.agencia = agencia;
+            this.numero = numero;
+            System.out.println("Estoy creando una cuenta " + this.numero);
+        }
     }
 
     //	método que devuelve un valor vacio
     public abstract void depositar(double saldo);
 
-    public boolean retirar(double valorRetiro) {
-
-        if (this.saldo >= valorRetiro) {
-            this.saldo -= valorRetiro;
-            return true;
+    public void retirar(double valorRetiro) throws SaldoInsuficienteException {
+        if (this.saldo < valorRetiro) {
+            throw new SaldoInsuficienteException("No tienes saldo");//lanza mi instancia de mi excepción
         }
-        return false;
+        this.saldo -= valorRetiro;
     }
 
     public boolean transferir(double transferencia, Cuenta objCuenta) {
         // valido si cuento con saldo mayor a la transferencia
         if (this.saldo >= transferencia) {
-
-            this.retirar(transferencia);
+            //aplicamos try catch y no en la firma para subir un nivel
+            try {
+                this.retirar(transferencia);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             objCuenta.depositar(transferencia);// puedo reutilizar el método depositar
             return true;
         }
