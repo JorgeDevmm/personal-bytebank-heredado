@@ -1,7 +1,6 @@
 package proyecto;//entidad cuenta:
 
 public abstract class Cuenta {
-
     protected double saldo;
     private int agencia;
     private int numero;
@@ -9,20 +8,16 @@ public abstract class Cuenta {
     // objeto cliente
     private static int total = 0;
 
-//	constructor pordefecto
-
-    //	public Cuenta() {
-//		
-//	}
-//	
-//	constructor	al ser manipulados por parametros
+    //	constructor	al ser manipulados por parametros
     public Cuenta(int agencia, int numero) {
         total++;
         System.out.println("Esta es la cuenta N° : " + total);
-        if (agencia <= 0 && numero <= 0) {
-            System.out.println("No se permite 0 en agencia y numero");
-            this.agencia = 1;//por default
-            this.numero = 1;
+        if (agencia < 1) {
+            throw new IllegalArgumentException("Agencia inválida");
+            //this.agencia = 1;//por default
+        } else if (numero < 1) {
+            throw new IllegalArgumentException("Número de cuenta inválido");
+            //this.numero = 1;
         } else {
             this.agencia = agencia;
             this.numero = numero;
